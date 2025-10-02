@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .skill-bar {
+            width: 0;
+            animation: fillBar 2s ease forwards;
+        }
+        @keyframes fillBar {
+            to {
+                width: 100%;
+            }
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .project-card {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Ensure smooth transitions */
+        .transition {
+            transition: color 0.3s ease;
+        }
+
+        /* Mobile menu styling */
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.active {
+            display: block;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            #nav-links {
+                display: none;
+            }
+            #menu-toggle {
+                display: block;
+            }
+            #mobile-menu a {
+                font-size: 0.875rem; /* 14px */
+            }
+        }
+
+        @media (min-width: 769px) {
+            #mobile-menu {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Jane Smith</h1>
+            <!-- Hamburger Icon for Mobile -->
+            <button class="md:hidden text-gray-600 focus:outline-none" id="menu-toggle" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-6" id="nav-links">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition">Skills</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-600 transition">Experience</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-600 transition">Projects</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-600 transition">Education</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition">Contact</a>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div class="hidden md:hidden bg-white shadow-md" id="mobile-menu">
+            <div class="flex flex-col items-center space-y-4 py-4">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition text-base">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition text-base">About</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition text-base">Skills</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-600 transition text-base">Experience</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-600 transition text-base">Projects</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-600 transition text-base">Education</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition text-base">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-blue-100 to-gray-50">
+        <div class="text-center animate-fade-in">
+            <img src="https://i.pinimg.com/474x/f1/2f/37/f12f37a580349c171e0cb7ff6f3e8331.jpg" alt="Profile Picture" class="w-40 h-40 rounded-full mx-auto mb-6 shadow-xl border-4 border-white">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Jane Smith</h1>
+            <p class="text-2xl text-gray-600 mb-6">Senior Full Stack Developer</p>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto">Crafting seamless digital experiences with a passion for clean code, user-centric design, and cutting-edge technologies.</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#contact" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition hover-scale">Hire Me</a>
+                <a href="https://github.com/janesmith" class="bg-gray-300 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-400 transition hover-scale">View GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 animate-fade-in">
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        I'm a dedicated Full Stack Developer with over 7 years of experience in building scalable web applications. I specialize in JavaScript ecosystems, cloud architecture, and DevOps practices. My goal is to create impactful solutions that solve real-world problems while ensuring an exceptional user experience.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mt-4">
+                        When I'm not coding, you can find me exploring new technologies, contributing  contributing to open-source projects, or hiking in the mountains.
+                    </p>
+                </div>
+                <div class="md:w-1/2 animate-fade-in">
+                    <img src="https://i.pinimg.com/474x/f1/2f/37/f12f37a580349c171e0cb7ff6f3e8331.jpg" alt="About Image" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">React & TypeScript</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">Node.js & Express</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">AWS & Docker</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">PostgreSQL & MongoDB</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">Tailwind CSS & UI/UX</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="animate-fade-in">
+                    <p class="text-lg font-semibold">CI/CD & DevOps</p>
+                    <div class="w-full bg-gray-200 rounded-full h-5">
+                        <div class="skill-bar bg-blue-600 h-5 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">Professional Experience</h2>
+            <div class="space-y-12">
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold">Senior Full Stack Developer</h3>
+                    <p class="text-lg text-gray-600">Tech Innovations Inc., San Francisco, CA | Jan 2021 - Present</p>
+                    <ul class="list-disc list-inside text-gray-500 mt-2">
+                        <li>Led a team of 5 developers to build a scalable e-commerce platform using React, Node.js, and AWS.</li>
+                        <li>Implemented CI/CD pipelines with Jenkins and Docker, reducing deployment time by 40%.</li>
+                        <li>Optimized database queries in PostgreSQL, improving application performance by 25%.</li>
+                    </ul>
+                </div>
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold">Full Stack Developer</h3>
+                    <p class="text-lg text-gray-600">Startup Solutions, Remote | Jun 2018 - Dec 2020</p>
+                    <ul class="list-disc list-inside text-gray-500 mt-2">
+                        <li>Developed a SaaS application with React and Express, serving 10,000+ active users.</li>
+                        <li>Integrated third-party APIs for payment processing and analytics.</li>
+                        <li>Collaborated with designers to create responsive, user-friendly interfaces using Tailwind CSS.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-lg shadow-lg p-6 animate-fade-in">
+                    <img src="https://i.pinimg.com/474x/e6/03/9f/e6039fc37daf50a5c9cb6bdba95c8766.jpg" alt="Project 1" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold">E-Commerce Platform</h3>
+                    <p class="text-gray-500 mt-2">A full-featured online store built with React, Node.js, and Stripe for payments.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-blue-600 hover:underline">Live Demo</a>
+                        <a href="#" class="text-blue-600 hover:underline">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-lg shadow-lg p-6 animate-fade-in">
+                    <img src="https://i.pinimg.com/474x/c3/41/8a/c3418aec9e4fa8b26c2d440be5f4a958.jpg" alt="Project 2" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold">Task Management App</h3>
+                    <p class="text-gray-500 mt-2">A collaborative app for task tracking, built with Next.js and MongoDB.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-blue-600 hover:underline">Live Demo</a>
+                        <a href="#" class="text-blue-600 hover:underline">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-lg shadow-lg p-6 animate-fade-in">
+                    <img src="https://i.pinimg.com/474x/73/18/ed/7318ed65b201779c79dcc1fd3d0719a8.jpg" alt="Project 3" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold">Portfolio Website</h3>
+                    <p class="text-gray-500 mt-2">A dynamic portfolio site with light mode, built with Tailwind CSS.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-blue-600 hover:underline">Live Demo</a>
+                        <a href="#" class="text-blue-600 hover:underline">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">Education</h2>
+            <div class="space-y-12">
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold">Master of Science in Computer Science</h3>
+                    <p class="text-lg text-gray-600">Stanford University, Stanford, CA | 2016 - 2018</p>
+                    <p class="text-gray-500 mt-2">Specialized in distributed systems and web development. Thesis: "Optimizing Scalable Web Applications."</p>
+                </div>
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold">Bachelor of Science in Software Engineering</h3>
+                    <p class="text-lg text-gray-600">University of California, Berkeley, CA | 2012 - 2016</p>
+                    <p class="text-gray-500 mt-2">Graduated with honors, focusing on full stack development and cloud computing.</p>
+                </div>
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-semibold">Advanced Certification in Cloud Architecture</h3>
+                    <p class="text-lg text-gray-600">AWS Training, Online | 2020</p>
+                    <p class="text-gray-500 mt-2">Completed AWS Solutions Architect certification with hands-on projects in cloud deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 animate-fade-in">Let's Connect</h2>
+            <p class="text-base text-gray-500 mb-6 max-w-2xl mx-auto">
+                I'm always open to new opportunities, collaborations, or just a chat about tech. Reach out via email or connect with me on social platforms!
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="mailto:jane.smith@example.com" class="text-blue-600 hover:underline text-base">jane.smith@example.com</a>
+                <a href="https://linkedin.com/in/janesmith" class="text-blue-600 hover:underline text-base">LinkedIn</a>
+                <a href="https://github.com/janesmith" class="text-blue-600 hover:underline text-base">GitHub</a>
+                <a href="https://twitter.com/janesmith" class="text-blue-600 hover:underline text-base">Twitter</a>
+            </div>
+            <a href="#home" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition hover:scale-105 text-base">Back to Top</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-200 text-center">
+        <p class="text-gray-600">© 2025 Jane Smith. Built with ❤️ and Tailwind CSS.</p>
+    </footer>
+
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on Scroll
+        const elements = document.querySelectorAll('.animate-fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(element => observer.observe(element));
+    </script>
+
+</body>
+</html>
